@@ -1,0 +1,110 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Donate Food</title>
+    <script src="https://maps.googleapis.com/maps/api/js?key=YOUR_GOOGLE_MAPS_API_KEY&libraries=places"></script>
+    <link rel="icon" href="files/images.png">
+    <link rel="stylesheet" type="text/css" href="style.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Paytone+One&family=Poppins:wght@100;200;300;400;500;600;700;800;900&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://unpkg.com/boxicons@latest/css/boxicons.min.css">
+</head>
+<body class="register-body">
+
+    <nav>
+        <img src="files/images.png" class="logo" alt="Logo" title="FoodYard">
+        <ul class="navbar">
+            <li>
+                <a href="./index.html">Home</a>
+                <a href="./index.html#fwmanage">What We Do</a>
+                <a href="./register.html">Donate !</a>
+                <a href="./about.html">About Us</a>
+                <a href="./login.html">Login</a>
+                <a href="./contact.html">Contact Us</a>
+            </li>
+        </ul>
+    </nav>
+
+    <section class="registration">
+        <div class="register-form">
+            <h1>Donate <span>Food</span></h1>
+            <p>It's not how much we give, but how much love we put into giving!</p> <br>
+            
+            <form action="submit_donation.php" method="POST" onsubmit="return validateform()">
+
+                <input type="text" name="username" id="username" placeholder="Username" required>
+                <input type="email" name="email" id="email" placeholder="Your Email" required>
+                
+                <input type="tel" name="phone" id="phonenum" placeholder="Your Phone No." required>
+                <input type="text" name="address" id="address" placeholder="Collection Address" required>
+                <input type="text" name="location" id="location" placeholder="Your Location" required>
+                <button type="button" id="find-ngos" onclick="findNearbyNGOs()">Find Nearby NGOs</button>
+
+                <h4>Category</h4>
+                <input type="radio" name="myfood" value="Veg" required> Veg &nbsp; 
+                <input type="radio" name="myfood" value="Non-Veg"> Non-Veg &nbsp; 
+                <input type="radio" name="myfood" value="Both"> Both 
+
+                <h4>Quantity (in Kg)</h4>
+                <input type="text" name="quantity" id="quantity" min="1" required>
+
+                <h4>Food Preparation Date and Time</h4>
+                <input type="datetime-local" name="fooddate" id="fooddate" required> <br> <br>
+
+                <textarea name="note" id="note" cols="2" rows="3" placeholder="Special Note For Connecting"></textarea>
+                <br><br>
+
+                <input type="checkbox" name="t&c" id="terms" checked required> I accept the Terms & Conditions.
+                <br>
+                <input type="submit" value="Submit" class="submitbtn">
+            </form>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <section class="footer">
+        <div class="foot">
+            <div class="footer-content">
+                <div class="footlinks">
+                    <h4>Quick Links</h4>
+                    <ul>
+                        <li><a href="./register.html">Donate</a></li>
+                        <li><a href="./about.html">About Us</a></li>
+                        <li><a href="./contact.html">Contact Us</a></li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- JavaScript -->
+    <script>
+        function validateform(){ 
+            var tel = document.getElementById("phonenum").value;  
+            var quantity = document.getElementById("quantity").value;
+
+            if (tel.length < 10) {  
+                alert("Phone number must be at least 10 digits!");  
+                return false;  
+            } else if (isNaN(tel)) {
+                alert("Phone number should not include characters!");
+                return false;
+            } 
+
+            if (quantity <= 0) {
+                alert("Quantity must be at least 1 kg!");
+                return false;
+            }
+
+            return true;
+        }
+
+        
+    </script>
+
+</body>
+</html>
